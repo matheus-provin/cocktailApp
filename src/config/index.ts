@@ -1,0 +1,1 @@
+export { ConfigTheme } from './theme'
