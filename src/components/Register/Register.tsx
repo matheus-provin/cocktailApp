@@ -2,37 +2,39 @@
 
 import { StackScreenProps } from "@react-navigation/stack";
 import React, { FC, useState } from "react";
-import { View, Text, TextInputComponent, TextInput } from "react-native";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Button } from "../../generic/button/button.component";
-export const RegisterScreen: FC<StackScreenProps<any>> = ({navigation}) => {
-
+export const RegisterScreen: FC<StackScreenProps<any>> = ({ navigation }) => {
   const [value, setValue] = useState({
-    email: '',
-    password: '',
-    error: ''
-  })
+    email: "",
+    password: "",
+    error: "",
+  });
 
   function signUp() {
-    if (value.email === '' || value.password === '') {
+    if (value.email === "" || value.password === "") {
       setValue({
         ...value,
-        error: 'Email e senha são obrigatórios.'
-      })
+        error: "Email e senha são obrigatórios.",
+      });
       return;
     }
 
     setValue({
       ...value,
-      error: ''
-    })
+      error: "",
+    });
   }
 
   return (
     <View style={styles.container}>
       <Text>Signup screen!</Text>
 
-      {!!value.error && <View style={styles.error}><Text>{value.error}</Text></View>}
+      {!!value.error && (
+        <View style={styles.error}>
+          <Text>{value.error}</Text>
+        </View>
+      )}
 
       <View style={styles.controls}>
         <TextInput
@@ -48,22 +50,21 @@ export const RegisterScreen: FC<StackScreenProps<any>> = ({navigation}) => {
           value={value.password}
           onChangeText={(text) => setValue({ ...value, password: text })}
           secureTextEntry={true}
-         
         />
 
-        <Button title="Sign up" styles={styles.control} onPress={signUp} />
+        <Button title='Sign up' styles={styles.control} onPress={signUp} />
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 20,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   controls: {
@@ -71,13 +72,13 @@ const styles = StyleSheet.create({
   },
 
   control: {
-    marginTop: 10
+    marginTop: 10,
   },
 
   error: {
     marginTop: 10,
     padding: 10,
-    color: '#fff',
-    backgroundColor: '#D54826FF',
-  }
+    color: "#fff",
+    backgroundColor: "#D54826FF",
+  },
 });
